@@ -4,7 +4,10 @@ Initial Project SETUP
 [ ] npm scripts
 
 DATABASE
-[ ] Postgres setup
+[x] Postgres setup
+[x] Database Entities - Restaurant & Product
+[x] Connect to DB
+[ ] Create models and schemas
 
 
 API

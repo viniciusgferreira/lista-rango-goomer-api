@@ -1,8 +1,14 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from './Database.js';
+import { Product } from './Product.js';
 
-const Restaurant = sequelize.define('Restaurant', {
+export const Restaurant = sequelize.define('Restaurant', {
   // Model attributes are defined here
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false
@@ -16,14 +22,14 @@ const Restaurant = sequelize.define('Restaurant', {
     allowNull: false
   },
   workingSchedule: {
-    type: DataTypes.DATE
+    type: DataTypes.ARRAY(DataTypes.STRING) // workingSchedule[0] = Sunday open time, close time (08:00-20:00)
   },
   products: {
-    type: DataTypes.ARRAY
+    type: DataTypes.ARRAY(DataTypes.STRING)
   }
 }, {
   // Other model options go here
+  freezeTableName: true
 });
 
-// `sequelize.define` also returns the model
-console.log(Restaurant === sequelize.models.Restaurant); // true
+await Restaurant.sync({ alter: true });

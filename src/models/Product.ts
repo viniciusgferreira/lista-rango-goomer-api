@@ -1,8 +1,13 @@
 import { DataTypes } from 'sequelize';
 import { sequelize } from './Database.js';
 
-const Product = sequelize.define('Product', {
+export const Product = sequelize.define('Product', {
   // Model attributes are defined here
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
   name: {
     type: DataTypes.STRING,
     allowNull: false
@@ -35,5 +40,3 @@ const Product = sequelize.define('Product', {
   // Other model options go here
 });
 
-// `sequelize.define` also returns the model
-console.log(Product === sequelize.models.Product); // true

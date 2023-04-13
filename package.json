@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "npx tsc && node dist/server.js"
+    "dev": "npx ts-node-esm --transpile-only src/server.ts"
   },
   "repository": {
     "type": "git",
@@ -20,13 +20,16 @@
   },
   "homepage": "https://github.com/viniciusgferreira/lista-rango-goomer-api#readme",
   "devDependencies": {
+    "@types/express": "^4.17.17",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
     "@typescript-eslint/parser": "^5.57.1",
     "eslint": "^8.37.0",
+    "ts-node-dev": "^2.0.0",
     "typescript": "^5.0.3"
   },
   "dependencies": {
     "dotenv": "^16.0.3",
+    "express": "^4.18.2",
     "pg": "^8.10.0",
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.31.0"

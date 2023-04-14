@@ -11,9 +11,14 @@ const DbURI = `postgres://${dbUser}:${dbPassword}@localhost:${dbPort}/${dbName}`
 
 export const sequelize = new Sequelize(DbURI);
 
-try {
-  await sequelize.authenticate();
-  console.log('Connection has been established successfully.');
-} catch (error) {
-  console.error('Unable to connect to the database:', error);
+async function testConnection() {
+  try {
+    await sequelize.authenticate();
+    console.log('Connection has been established successfully.');
+    await import('./index.js');
+  } catch (error) {
+    console.error('Unable to connect to the database:', error);
+  }
 }
+
+testConnection();

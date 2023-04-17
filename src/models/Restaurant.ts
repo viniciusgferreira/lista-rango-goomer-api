@@ -1,8 +1,28 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from './Database.js';
-import { Product } from './Product.js';
 
-export const Restaurant = sequelize.define('Restaurant', {
+export interface RestaurantAttributes {
+  id: number;
+  name: string;
+  adress: string;
+  photo: string;
+  workingSchedule: Array<string>;
+}
+
+export type RestaurantInput = Optional<RestaurantAttributes, 'id'>
+export type RestaurantOutput = Required<RestaurantAttributes>
+
+export class Restaurant extends Model<RestaurantAttributes, RestaurantInput> implements RestaurantAttributes {
+  public id!: number;
+  public name!: string;
+  public adress!: string;
+  public photo!: string;
+  public workingSchedule!: Array<string>;
+
+}
+
+Restaurant.init({
+
   // Model attributes are defined here
   id: {
     type: DataTypes.INTEGER,
@@ -24,12 +44,18 @@ export const Restaurant = sequelize.define('Restaurant', {
   workingSchedule: {
     type: DataTypes.ARRAY(DataTypes.STRING) // workingSchedule[0] = Sunday open time, close time (08:00-20:00)
   },
-  products: {
-    type: DataTypes.ARRAY(DataTypes.STRING)
-  }
 }, {
   // Other model options go here
-  freezeTableName: true
+  sequelize: sequelize,
+  modelName: 'Restaurant',
+  freezeTableName: true,
+  createdAt: false,
+  updatedAt: false
+
 });
 
-await Restaurant.sync({ alter: true });
+
+(async () => {
+  await Restaurant.sync({ alter: true });
+  console.log('Restaurant model loaded');
+})();

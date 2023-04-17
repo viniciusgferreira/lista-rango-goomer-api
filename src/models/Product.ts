@@ -1,12 +1,44 @@
-import { DataTypes } from 'sequelize';
+import { DataTypes, Model, Optional } from 'sequelize';
 import { sequelize } from './Database.js';
 
-export const Product = sequelize.define('Product', {
-  // Model attributes are defined here
+export interface ProductAttributes {
+  id: number;
+  restaurantId: number;
+  name: string;
+  category: string;
+  price: number;
+  photo: string;
+  isOnSale: boolean;
+  salePrice: number;
+  saleDescription: string;
+  saleSchedule: string[];
+}
+
+export type ProductInput = Optional<ProductAttributes, 'id'>
+export type ProductOutput = Required<ProductAttributes>
+
+export class Product extends Model<ProductAttributes, ProductInput> implements ProductAttributes {
+  public id!: number;
+  public restaurantId!: number;
+  public name!: string;
+  public category!: string;
+  public price!: number;
+  public photo!: string;
+  public isOnSale!: boolean;
+  public salePrice!: number;
+  public saleDescription!: string;
+  public saleSchedule!: string[];
+
+}
+
+Product.init({
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
+  },
+  restaurantId: {
+    type: DataTypes.INTEGER,
   },
   name: {
     type: DataTypes.STRING,
@@ -24,7 +56,7 @@ export const Product = sequelize.define('Product', {
     type: DataTypes.STRING,
     allowNull: false
   },
-  sale: {
+  isOnSale: {
     type: DataTypes.BOOLEAN
   },
   saleDescription: {
@@ -34,9 +66,18 @@ export const Product = sequelize.define('Product', {
     type: DataTypes.DECIMAL(10, 2)
   },
   saleSchedule: {
-    type: DataTypes.DATE
+    type: DataTypes.ARRAY(DataTypes.STRING)
   }
 }, {
   // Other model options go here
+  sequelize: sequelize,
+  modelName: 'Product',
+  freezeTableName: true,
+  createdAt: false,
+  updatedAt: false
 });
 
+(async () => {
+  await Product.sync({ alter: true });
+  console.log('Product model loaded');
+})();

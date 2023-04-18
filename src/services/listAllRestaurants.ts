@@ -2,7 +2,7 @@ import { sequelize } from '../models/Database.js';
 
 export async function listAllRestaurants() {
   try {
-    const [results] = await sequelize.query('SELECT "id", "name", "adress", "photo", "workingSchedule", "products", "createdAt", "updatedAt" FROM "Restaurant";');
+    const [results] = await sequelize.query('SELECT * FROM "Restaurant";');
     return results;
   } catch (error) {
     if (error instanceof Error) {

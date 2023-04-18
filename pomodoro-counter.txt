@@ -1,3 +1,3 @@
 Counter for time spent developing this project (50min pomodoros)
 
-7 Pomodoro
+9 Pomodoro

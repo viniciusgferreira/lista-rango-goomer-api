@@ -1,6 +1,6 @@
 import { Request, Response } from 'express';
 import { listAllRestaurants } from '../services/listAllRestaurants.js';
-import { validateRestaurant } from '../utils/restaurantValidator.js';
+import { validateRestaurant } from '../utils/validator.js';
 import { createRestaurant } from '../services/createRestaurant.js';
 import { formatInputRestaurant } from '../utils/formatter.js';
 import { listRestaurantById } from '../services/listRestaurantById.js';

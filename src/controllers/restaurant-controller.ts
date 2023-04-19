@@ -25,5 +25,5 @@ export async function listRestaurantByIdController(req: Request, res: Response) 
   if (isNaN(id)) { res.status(400).json('id must be a number'); return; }
 
   const restaurant = await listRestaurantById(id);
-  restaurant?.length ? res.json(restaurant) : res.status(404).json(`Restaurant with id ${id} not found`);
+  restaurant ? res.json(restaurant) : res.status(404).json(`Restaurant with id ${id} not found`);
 }

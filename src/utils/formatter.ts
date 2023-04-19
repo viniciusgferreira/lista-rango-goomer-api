@@ -16,11 +16,11 @@ export function formatInputRestaurant(req: Request) {
 }
 
 export function formatInputProduct(req: Request) {
-  const { restaurantId, name, category, price, photo, isOnSale, salePrice, saleDescription, saleSchedule } = req.body;
+  const { RestaurantId, name, category, price, photo, isOnSale, salePrice, saleDescription, saleSchedule } = req.body;
   const fullSaleSchedule = [`Sun ${saleSchedule.sunday}`, `Mon ${saleSchedule.monday}`, `Tue ${saleSchedule.tuesday}`, `Wed ${saleSchedule.wednesday}`, `Thu ${saleSchedule.thursday}`, `Fri ${saleSchedule.friday}`, `Sat ${saleSchedule.saturday}`];
 
   const productInput: ProductInput = {
-    restaurantId: restaurantId,
+    RestaurantId: RestaurantId,
     name: name,
     category: category,
     price: price,

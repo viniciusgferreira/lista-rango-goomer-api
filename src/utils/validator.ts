@@ -8,7 +8,7 @@ export function validateRestaurant(restaurant: RestaurantInput) {
   return true;
 }
 export function validateProduct(product: ProductInput) {
-  if (!product.name || !product.restaurantId || !product.photo || !product.category || !product.price || !product.isOnSale || !product.salePrice || !product.saleDescription || !product.saleSchedule) { return false; }
+  if (!product.name || !product.RestaurantId || !product.photo || !product.category || !product.price || !product.isOnSale || !product.salePrice || !product.saleDescription || !product.saleSchedule) { return false; }
 
   // VALIDATE ALL FIELDS
   return true;

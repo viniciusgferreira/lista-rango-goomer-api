@@ -3,7 +3,6 @@ import { sequelize } from './Database.js';
 
 export interface ProductAttributes {
   id: number;
-  restaurantId: number;
   name: string;
   category: string;
   price: number;
@@ -14,12 +13,13 @@ export interface ProductAttributes {
   saleSchedule: string[];
 }
 
-export type ProductInput = Optional<ProductAttributes, 'id'>
+export type ProductInput = Optional<ProductAttributes, 'id'> & {
+  RestaurantId: number;
+}
 export type ProductOutput = Required<ProductAttributes>
 
 export class Product extends Model<ProductAttributes, ProductInput> implements ProductAttributes {
   public id!: number;
-  public restaurantId!: number;
   public name!: string;
   public category!: string;
   public price!: number;
@@ -36,9 +36,6 @@ Product.init({
     type: DataTypes.INTEGER,
     autoIncrement: true,
     primaryKey: true
-  },
-  restaurantId: {
-    type: DataTypes.INTEGER,
   },
   name: {
     type: DataTypes.STRING,
@@ -77,7 +74,8 @@ Product.init({
   updatedAt: false
 });
 
-(async () => {
+/* (async () => {
   await Product.sync({ alter: true });
   console.log('Product model loaded');
 })();
+ */

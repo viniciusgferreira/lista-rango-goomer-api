@@ -55,7 +55,7 @@ Restaurant.init({
 });
 
 
-(async () => {
+/* (async () => {
   await Restaurant.sync({ alter: true });
   console.log('Restaurant model loaded');
-})();
+})(); */

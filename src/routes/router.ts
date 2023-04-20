@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { addRestaurantController, listRestaurantByIdController, listRestaurantsController } from '../controllers/restaurant-controller.js';
+import { addRestaurantController, editRestaurantController, listRestaurantByIdController, listRestaurantsController } from '../controllers/restaurant-controller.js';
 import { addProductController, listProductsController } from '../controllers/product-controller.js';
 
 export const router = Router();
@@ -19,7 +19,7 @@ router.get('/restaurants', listRestaurantsController);
 router.post('/restaurants', addRestaurantController);
 
 // EDIT RESTAURANT INFO
-//router.put('/restaurants', editRestaurant);
+router.put('/restaurants/:id', editRestaurantController);
 
 // DELETE RESTAURANT
 //router.delete('/restaurants/:id', removeRestaurant);

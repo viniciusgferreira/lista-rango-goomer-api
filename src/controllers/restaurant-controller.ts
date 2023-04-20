@@ -5,6 +5,7 @@ import { createRestaurant } from '../services/createRestaurant.js';
 import { formatInputRestaurant } from '../utils/formatter.js';
 import { listRestaurantById } from '../services/listRestaurantById.js';
 import { updateRestaurant } from '../services/updateRestaurant.js';
+import { deleteRestaurant } from '../services/deleteRestaurant.js';
 
 export async function listRestaurantsController(req: Request, res: Response) {
   const allRestaurants = await listAllRestaurants();
@@ -41,4 +42,13 @@ export async function editRestaurantController(req: Request, res: Response) {
   const result = await updateRestaurant(editedRestaurant, id);
   result?.[1] ? res.status(200).json(result?.[0]) : res.status(500).send(result?.[0]);
 
+}
+
+export async function removeRestaurantController(req: Request, res: Response) {
+  const id = Number(req.params.id);
+
+  const result = await deleteRestaurant(id);
+  const isRestaurantDeleted = result?.[0];
+  const message = result?.[1];
+  isRestaurantDeleted ? res.status(204).send() : res.status(500).send(message);
 }

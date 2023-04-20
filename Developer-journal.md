@@ -15,7 +15,7 @@ API
 [X] POST Create new restaurant
 [x] GET List restaurant info
 [X] PUT Update restaurant info
-[ ] DELETE Remove a Specific restaurant
+[x] DELETE Remove a Specific restaurant
 [ ] GET List all products from specific restaurant
 [x] POST Create a new product inside a specific restaurant
 [ ] PUT Update product info from a specific restaurant

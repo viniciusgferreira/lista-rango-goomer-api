@@ -4,7 +4,6 @@ import { RestaurantInput } from '../models/Restaurant.js';
 export async function updateRestaurant(restaurant: RestaurantInput, id: number) {
   const workingScheduleArrayQuery = restaurant.workingSchedule.join('\',\'');
   const query = `UPDATE "Restaurant" SET name = '${restaurant.name}', adress = '${restaurant.adress}', photo = '${restaurant.photo}', "workingSchedule" = ARRAY ['${workingScheduleArrayQuery}'] WHERE id = ${id} RETURNING "id","name","adress","photo","workingSchedule";`;
-  console.log(query);
   try {
     return await sequelize.query(query);
   } catch (error) {
